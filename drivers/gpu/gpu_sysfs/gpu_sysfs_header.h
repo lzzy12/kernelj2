@@ -51,7 +51,11 @@ typedef struct sruk_device
  * *********************************************************************
  * */
 ssize_t gpu_min_clock_show(struct device *dev, struct device_attribute *attr, char *buf);
+ssize_t gpu_min_clock_write(struct device *dev, struct device_attribute *attr, const char *buf, size_t count);
 ssize_t gpu_max_clock_show(struct device *dev, struct device_attribute *attr, char *buf);
+ssize_t gpu_max_clock_write(struct device *dev, struct device_attribute *attr, const char *buf, size_t count);
+ssize_t gpu_max_clock_screen_off_show(struct device *dev, struct device_attribute *attr, char *buf);
+ssize_t gpu_max_clock_screen_off_write(struct device *dev, struct device_attribute *attr, const char *buf, size_t count);
 ssize_t gpu_busy_show(struct device *dev, struct device_attribute *attr, char *buf);
 ssize_t gpu_vol_show(struct device *dev, struct device_attribute *attr, char *buf);
 ssize_t gpu_freq_show(struct device *dev, struct device_attribute *attr, char *buf);
@@ -94,3 +98,4 @@ int 	open_file_and_write_buffer(char *filename_and_path, const char *buffer, int
 #define		INPUT_BUFFER_SIZE_512	512
 
 #endif 		/* __GPU_SYSFS_HEADER_H__ */
+
