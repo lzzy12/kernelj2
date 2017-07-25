@@ -25,7 +25,7 @@
 #include <mach/asv-exynos.h>
 #include <mach/asv-exynos_cal.h>
 
-#define CPUFREQ_LEVEL_END	(L12 + 1)
+#define CPUFREQ_LEVEL_END	(L13 + 1)
 #define DIV_NUM	9
 
 static int pll_safe_idx;
@@ -57,6 +57,7 @@ static struct cpufreq_frequency_table exynos3475_freq_table[] = {
 	{L10,  507 * 1000},
 	{L11,  403 * 1000},
 	{L12,  299 * 1000},
+	{L13,  195 * 1000},
 	{0, CPUFREQ_TABLE_END},
 };
 #if 0
@@ -101,6 +102,8 @@ static unsigned int exynos3475_apll_pms_table[CPUFREQ_LEVEL_END] = {
 	PLL2555X_PMS(248, 4, 2),
 	/* APLL FOUT L12:  300MHz */
 	PLL2555X_PMS(368, 4, 3),
+	/* APLL FOUT L13:  200Mhz */
+	PLL2555X_PMS(240, 4, 3),
 };
 
 /*
@@ -120,6 +123,7 @@ static const unsigned int asv_voltage_3475[CPUFREQ_LEVEL_END] = {
 	 950000,	/* L10  500 */
 	 925000,	/* L11  400 */
 	 900000,	/* L12  300 */
+	 875000,	/* L13  200 */
 };
 
 /* Minimum memory throughput in megabytes per second */
@@ -137,6 +141,7 @@ static int exynos3475_bus_table[CPUFREQ_LEVEL_END] = {
 	413000,		/* 500 MHz */
 	0,		/* 400 MHz */
 	0,		/* 300 MHz */
+	0,		/* 200 MHz */
 };
 static void exynos3475_set_clkdiv(unsigned int div_index)
 {
@@ -236,7 +241,7 @@ static void __init set_volt_table(void)
 	}
 
 	max_support_idx = L0;	/* 1.5GHz */
-	min_support_idx = L12;	/* 200MHz */
+	min_support_idx = L13;	/* 195MHz */
 	pr_info("CPUFREQ : max_freq : L%d %u khz\n", max_support_idx,
 		exynos3475_freq_table[max_support_idx].frequency);
 	pr_info("CPUFREQ : min_freq : L%d %u khz\n", min_support_idx,
