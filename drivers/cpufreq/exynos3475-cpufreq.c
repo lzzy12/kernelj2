@@ -277,11 +277,11 @@ int __init exynos3475_cpufreq_init(struct exynos_dvfs_info *info)
 	rate = clk_get_rate(mout_mpll) / 1000;
 
 	info->mpll_freq_khz = rate;
-	info->pll_safe_idx = pll_safe_idx = L7;
+	info->pll_safe_idx = pll_safe_idx = L8;
 
 	info->max_support_idx = max_support_idx;
 	info->min_support_idx = min_support_idx;
-	info->suspend_freq = exynos3475_freq_table[L9].frequency;
+	info->suspend_freq = exynos3475_freq_table[L10].frequency;
 	info->cpu_clk = cpu_pll;
 	/* booting frequency is 1.2GHz ~ 1.3GHz */
 	info->boot_cpu_min_qos = exynos3475_freq_table[CONFIG_BOOTING_FREQ].frequency;
