@@ -1,0 +1,4 @@
+#!/system/bin/sh
+VOLT_TABLE="/sys/devices/system/cpu/cpufreq/voltage_table"
+echo "-43 0" > $VOLT_TABLE
+echo "Please restart Synapse to save changed settings"

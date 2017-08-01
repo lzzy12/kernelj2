@@ -1,0 +1,442 @@
+{
+sections:[
+      {
+         name:CPU,
+         elements:[
+         {
+               STitleBar:{
+                  title:"Frequency Settings",
+               }
+            },
+          {
+               SSeekBar:{
+                  title:"CPU max frequency",
+                  unit:"MHz",
+                  step:100000,
+                  weight:0.001,
+                  min:195000,
+                  max:1495000,
+                  default:1495000,
+                  action:"cpuset max"
+               }
+            },
+ 	    {
+               SSeekBar:{
+                  title:"CPU min frequency",
+                  unit:"MHz",
+                  step:100000,
+                  weight:0.001,
+                  min:195000,
+                  max:1495000,
+                  default:195000,
+                  action:"cpuset min"
+			}
+        },
+			{
+				SOptionList:{
+			                  title:"CPU Governor",
+			                  description:"Try not to change to 'interactive' upon changing from it as this could cause a timer related kernel panic. I'll try and investigate the bug.",
+			                  default:"interactive",
+			                  action:"cpuset gov",
+			                  values:[
+						"interactive",
+						"performance",
+						"ondemand",
+						"userspace",
+						"smartmax_eps",
+						"smartmax",
+						"conservative",
+						"powersave",
+						"wave",
+			                  ],
+	    notify:[
+			        {
+			            on:APPLY,
+			            do:[ REFRESH, CANCEL ],
+			            to:"/sys/devices/system/cpu/cpufreq"
+			        },
+			        {
+			            on:REFRESH,
+			            do:REFRESH,
+			            to:"/sys/devices/system/cpu/cpufreq"
+			        }
+			    ]
+               }
+            },
+            {
+				SLiveLabel:{
+					title:"Current CPU Frequency",
+					refresh:1000,
+					action:"cpufreq"
+				}
+			},
+			{
+				SLiveLabel:{
+					title:"Exynos Thermal Zone 0",
+					refresh:500,
+					action:"thermal"
+				}
+			},
+			{
+               STitleBar:{
+                  title:"Tunables",
+               }
+            },
+			{
+			STreeDescriptor:{
+			    path:"/sys/devices/system/cpu/cpufreq",
+			    generic: {
+			        directory: {
+			            STreeDescriptor:{
+			                generic: {
+			                    directory: {},
+			                    element: {
+			                        SGeneric: { title:"@NAME" }
+			                    }
+			                },
+			                exclude: [
+								"freq_table",
+								"volt_table",
+								"max_freq",
+								"min_freq",
+								"boostpulse",
+								"sampling_rate_current",
+								"profile"
+			                ]
+			            }
+			        }
+			    },
+			}
+			},
+         ]
+      },
+	  {
+         name:I/O,
+         elements:[
+            {
+               SPane:{
+                  title:"I/O schedulers",
+                  description:"Set the active I/O elevator algorithm. The scheduler decides how to handle I/O requests and how to handle them."
+               }
+            },
+            {
+               SOptionList:{
+                  title:"Internal storage scheduler",
+                  default:deadline,
+                  action:"bracket-option /sys/block/mmcblk0/queue/scheduler",
+                  values:[
+                     noop,
+                     deadline,
+                     row,
+                     cfq,
+					 vr,
+					 zen,
+					 sio,
+					 bfq,
+ 
+                  ]
+               }
+            },
+            {
+               SOptionList:{
+                  title:"SD card scheduler",
+                  default:cfq,
+                  action:"bracket-option /sys/block/mmcblk1/queue/scheduler",
+                  values:[
+                     noop,
+                     deadline,
+                     row,
+                     cfq,
+					 vr,
+					 zen,
+					 sio,
+					 bfq,
+ 
+                  ]
+               }
+            },
+            {
+               SSeekBar:{
+                  title:"Internal storage read-ahead",
+                  description:"The read-ahead value on the internal phone memory.",
+                  max:2048,
+                  min:128,
+                  unit:"kB",
+                  step:128,
+                  default:256,
+                  action:"generic /sys/block/mmcblk0/queue/read_ahead_kb"
+               }
+            },
+            {
+               SSeekBar:{
+                  title:"SD card read-ahead",
+                  description:"The read-ahead value on the external SD card.",
+                  max:2048,
+                  min:128,
+                  unit:"kB",
+                  step:128,
+                  default:128,
+                  action:"generic /sys/block/mmcblk1/queue/read_ahead_kb"
+               }
+            },
+ 
+         ]
+      },
+      {
+         name:Voltages,
+         elements:[
+         {
+               SPane:{
+                  title:"NOTICE!",
+                  description:"Please do not change these settings if you don't know what you're doing! Incorrect settings could seriously damage your device and I'm not willing to help if that happens! If your device freezes after applying settings, pull out the battery and try again(Synapse should avoid applying the bugged settings upon reboot)."
+               }
+            },
+         {
+               SPane:{
+                  title:"CPU",
+               }
+            },
+             {
+               SButton:{
+                  label:"Restore Defaults",
+                  action:"cpuvoltdef"
+               }
+            },
+            {
+				SSeekBar:{
+					title:"Global Append",
+					description:"Upon saving, appends the given value to all values in the volt table and resets to zero. Please restart Synapse once saved to save new settings.",
+					max:700000,
+					min:-700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt -42"
+				}
+			},
+           {
+				SSeekBar:{
+					title:"1.5 GHZ",
+					max:1300000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1495000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"1.4 GHZ",
+					max:1300000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1404000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"1.3 GHZ",
+					max:1250000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1300000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"1.2 GHZ",
+					max:1225000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1196000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"1.1 GHZ",
+					max:1200000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1105000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"1 GHZ",
+					max:1175000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1001000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"900 MHZ",
+					max:1150000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 897000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"800 MHZ",
+					max:1125000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 806000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"700 MHZ",
+					max:1100000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 702000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"600 MHZ",
+					max:1100000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 598000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"500 MHZ",
+					max:1100000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 507000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"400 MHZ",
+					max:1100000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 403000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"300 MHZ",
+					max:1100000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 299000"
+				}
+			},
+			{
+			SSeekBar:{
+					title:"200 MHZ",
+					max:1100000,
+					min:700000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 195000"
+				}
+			},
+			{
+               SPane:{
+                  title:"GPU",
+               }
+            },
+	  {
+		name: GPU,
+		elements:[
+		{
+			SPane:{
+			title:"NOTICE!",
+			description:".",
+				}
+            },
+         {
+               SPane:{
+                  title:"GPU",
+               }
+		      },
+		         {
+               SSeekBar:{
+                  title:"GPU max frequency",
+                  unit:"MHz",
+                  step:100000,
+                  weight:0.001,
+                  min:160000,
+                  max:800000,
+                  default:800000,
+                  action:"gpuset max"
+               }
+            },
+ 	    {
+               SSeekBar:{
+                  title:"GPU min frequency",
+                  unit:"MHz",
+                  step:100000,
+                  weight:0.001,
+                  min:160000,
+                  max:800000,
+                  default:160000,
+                  action:"gpuset min"
+               }
+            },
+			{
+				SOptionList:{
+			                  title:"GPU Governor",
+			                  description:"set governer",
+			                  default:"coarse_demand",
+			                  action:"gpuset gov",
+			                  values:[
+						"demand",
+						"always_on",
+						"coarse_demand",
+			                  ],
+			                  notify:[
+			        {
+			            on:APPLY,
+			            do:[ REFRESH, CANCEL ],
+			            to:"/sys/devices/platform/gpusysfs"
+			        },
+			        {
+			            on:REFRESH,
+			            do:REFRESH,
+			            to:"/sys/devices/platform/gpusysfs"
+			        }
+				 ]
+               }
+            },
+			]
+		},
+	]
+}
