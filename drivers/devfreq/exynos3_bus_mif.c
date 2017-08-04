@@ -7,7 +7,8 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
-
+#include <linux/rculist.h>
+#include <linux/sysfs_helpers.h>
 #include <linux/clk.h>
 #include <linux/clk-provider.h>
 #include <linux/devfreq.h>
