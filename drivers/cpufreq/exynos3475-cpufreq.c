@@ -246,7 +246,7 @@ static void __init set_volt_table(void)
 	}
 
 	max_support_idx = L1;	/* 1.6GHz */
-	min_support_idx = L14;	/* 195MHz */
+	min_support_idx = L13;	/* 299MHz */
 	pr_info("CPUFREQ : max_freq : L%d %u khz\n", max_support_idx,
 		exynos3475_freq_table[max_support_idx].frequency);
 	pr_info("CPUFREQ : min_freq : L%d %u khz\n", min_support_idx,

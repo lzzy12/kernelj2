@@ -151,8 +151,7 @@ static u64 round_to_nw_start(u64 jif)
 	return (jif + 1) * step;
 }
 
-static void cpufreq_interactive_timer_resched(
-	struct cpufreq_interactive_cpuinfo *pcpu)
+static void cpufreq_interactive_timer_resched( struct cpufreq_interactive_cpuinfo *pcpu)
 {
 	u64 expires;
 	unsigned long flags;
@@ -1397,15 +1396,15 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 }
 
 #ifndef CONFIG_CPU_FREQ_DEFAULT_GOV_INTERACTIVE
-static
-#endif
+
+
 struct cpufreq_governor cpufreq_gov_interactive_pro = {
 	.name = "interactive_pro",
 	.governor = cpufreq_governor_interactive,
 	.max_transition_latency = 10000000,
 	.owner = THIS_MODULE,
 };
-
+#endif
 static void cpufreq_interactive_nop_timer(unsigned long data)
 {
 }
