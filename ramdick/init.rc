@@ -940,14 +940,8 @@ on property:sys.sysctl.extra_free_kbytes=*
 
 # Activate Background Compaction
 on property:sys.sysctl.compact_memory=1
-    setprop sys.sysctl.compact_memory 0
-    start compact_memory
-
-service compact_memory /sbin/bgcompact
-    user root
-    seclabel u:r:sswap:s0
-    oneshot
-    disabled
+    write /proc/sys/vm/compact_memory 1
+    setprop sys.sysctl.compact_memory=0
 
 # "tcp_default_init_rwnd" Is too long!
 on property:sys.sysctl.tcp_def_init_rwnd=*
@@ -1393,3 +1387,9 @@ on property:service.vpnclientd.enable=0
 # Reactivation lock
 	service reactived /system/bin/reactived
 	class late_start
+ 
+# start init.d support
+service kernel-init /sbin/kernel-init.sh
+	class main
+	user root
+	oneshot

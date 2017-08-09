@@ -1,0 +1,32 @@
+#!/system/bin/sh
+if [[ ! -z $1 ]];then
+	file_r="/sys/class/mdnie/mdnie/$1_red";
+	file_g="/sys/class/mdnie/mdnie/$1_green";
+	file_b="/sys/class/mdnie/mdnie/$1_blue";
+
+    if [[ ! -z $2 ]]; then
+
+		input1=`echo $2 | cut -c 2-`
+		hexinput=`echo $input1 | tr '[:lower:]' '[:upper:]'` #uppercaseing
+		a=`echo $hexinput | cut -c-2`
+		b=`echo $hexinput | cut -c3-4`
+		c=`echo $hexinput | cut -c5-6`
+
+		r=`/res/busybox printf "%d" 0x$a`
+		g=`/res/busybox printf "%d" 0x$b`
+		b=`/res/busybox printf "%d" 0x$c`
+		
+        echo $r > $file_r
+        echo $g > $file_g
+        echo $b > $file_b
+    fi
+    r1=`cat $file_r`
+    g1=`cat $file_g`
+    b1=`cat $file_b`
+	rhex1=`/res/busybox printf "%02x" $r1` 
+	ghex1=`/res/busybox printf "%02x" $g1` 
+	bhex1=`/res/busybox printf "%02x" $b1` 
+	hexout="#$rhex1$ghex1$bhex1"
+	hexout1=`echo $hexout | tr '[:lower:]' '[:upper:]'`
+	echo $hexout1
+fi

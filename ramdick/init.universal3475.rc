@@ -146,7 +146,7 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
 # SSWAP
-    write /proc/sys/vm/swappiness 200
+    write /proc/sys/vm/swappiness 170
 
     # Support silent logging
     mkdir /data/log 0770 system log
@@ -304,6 +304,11 @@ on boot
     # MSP FactoryApp
     chmod 0775 /efs/FactoryApp
 
+    # IPSec for VOLTE
+    chown root system /dev/socket
+    chmod 0775 /dev/socket
+
+
 on fs
     #For cpefs partition
     mkdir /cpefs 0771 radio system
@@ -418,6 +423,13 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/020a00000000000000000
 service umount_service /system/bin/umount /preload
     disabled
     oneshot
+
+ #VoLTE
+ service ipsec-daemon /system/bin/IPSecService
+    class main
+    socket ipsec_socket stream 660 system system
+    user system
+    group system net_raw inet net_admin
 
 on property:persist.sys.storage_preload=1
     mount ext4 /dev/block/platform/13540000.dwmmc0/by-name/HIDDEN /preload nosuid nodev noatime wait ro

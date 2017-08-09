@@ -1,5 +1,6 @@
 {
 sections:[
+	
       {
          name:CPU,
          elements:[
@@ -14,7 +15,7 @@ sections:[
                   unit:"MHz",
                   step:100000,
                   weight:0.001,
-                  min:195000,
+                  min:299000,
                   max:1495000,
                   default:1495000,
                   action:"cpuset max"
@@ -26,9 +27,9 @@ sections:[
                   unit:"MHz",
                   step:100000,
                   weight:0.001,
-                  min:195000,
+                  min:299000,
                   max:1495000,
-                  default:195000,
+                  default:299000,
                   action:"cpuset min"
 			}
         },
@@ -36,10 +37,11 @@ sections:[
 				SOptionList:{
 			                  title:"CPU Governor",
 			                  description:"Try not to change to 'interactive' upon changing from it as this could cause a timer related kernel panic. I'll try and investigate the bug.",
-			                  default:"interactive",
+			                  default:"interactive_pro",
 			                  action:"cpuset gov",
 			                  values:[
 						"interactive",
+						"interactive_pro",
 						"performance",
 						"ondemand",
 						"userspace",
@@ -217,8 +219,8 @@ sections:[
            {
 				SSeekBar:{
 					title:"1.5 GHZ",
-					max:1300000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -228,8 +230,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"1.4 GHZ",
-					max:1300000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -239,8 +241,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"1.3 GHZ",
-					max:1250000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -250,8 +252,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"1.2 GHZ",
-					max:1225000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -261,8 +263,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"1.1 GHZ",
-					max:1200000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -272,8 +274,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"1 GHZ",
-					max:1175000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -283,8 +285,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"900 MHZ",
-					max:1150000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -294,8 +296,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"800 MHZ",
-					max:1125000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -305,8 +307,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"700 MHZ",
-					max:1100000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -316,8 +318,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"600 MHZ",
-					max:1100000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -327,8 +329,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"500 MHZ",
-					max:1100000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -338,8 +340,8 @@ sections:[
 			{
 				SSeekBar:{
 					title:"400 MHZ",
-					max:1100000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -349,94 +351,15 @@ sections:[
 			{
 				SSeekBar:{
 					title:"300 MHZ",
-					max:1100000,
-					min:700000,
+					max:1400000,
+					min:600000,
 					unit:"uV",
 					step:6250,
 					default:0,
 					action:"cpuvolt 299000"
 				}
 			},
-			{
-			SSeekBar:{
-					title:"200 MHZ",
-					max:1100000,
-					min:700000,
-					unit:"uV",
-					step:6250,
-					default:0,
-					action:"cpuvolt 195000"
-				}
-			},
-			{
-               SPane:{
-                  title:"GPU",
-               }
-            },
-	  {
-		name: GPU,
-		elements:[
-		{
-			SPane:{
-			title:"NOTICE!",
-			description:".",
-				}
-            },
-         {
-               SPane:{
-                  title:"GPU",
-               }
-		      },
-		         {
-               SSeekBar:{
-                  title:"GPU max frequency",
-                  unit:"MHz",
-                  step:100000,
-                  weight:0.001,
-                  min:160000,
-                  max:800000,
-                  default:800000,
-                  action:"gpuset max"
-               }
-            },
- 	    {
-               SSeekBar:{
-                  title:"GPU min frequency",
-                  unit:"MHz",
-                  step:100000,
-                  weight:0.001,
-                  min:160000,
-                  max:800000,
-                  default:160000,
-                  action:"gpuset min"
-               }
-            },
-			{
-				SOptionList:{
-			                  title:"GPU Governor",
-			                  description:"set governer",
-			                  default:"coarse_demand",
-			                  action:"gpuset gov",
-			                  values:[
-						"demand",
-						"always_on",
-						"coarse_demand",
-			                  ],
-			                  notify:[
-			        {
-			            on:APPLY,
-			            do:[ REFRESH, CANCEL ],
-			            to:"/sys/devices/platform/gpusysfs"
-			        },
-			        {
-			            on:REFRESH,
-			            do:REFRESH,
-			            to:"/sys/devices/platform/gpusysfs"
-			        }
-				 ]
-               }
-            },
-			]
-		},
+         ]
+      },
 	]
 }

@@ -1,0 +1,31 @@
+#!/system/bin/sh
+CURGOV=`cat /sys/devices/platform/gpusysfs/gpu_available_governor`;
+CURMIN=`cat /sys/devices/platform/gpusysfs/gpu_min_lock`;
+CURMAX=`cat /sys/devices/platform/gpusysfs/gpu_max_lock`;
+if [[ ! -z $1 ]];then
+    if [[ ! -z $2 ]]; then
+        case $1 in
+			gpugov)
+				echo $CURMIN > /sys/devices/platform/gpusysfs/gpu_min_lock;
+				echo $CURRMAX > /sys/devices/platform/gpusysfs/gpu_max_lock;
+				echo $2 > /sys/devices/platform/gpusysfs/gpu_available_governor;;
+			gpumin)
+				echo $2 > /sys/devices/platform/gpusysfs/gpu_min_lock;
+				echo $CURMAX > /sys/devices/platform/gpusysfs/gpu_max_lock;
+				echo $CURRGOV > /sys/devices/platform/gpusysfs/gpu_available_governor;;
+			gpumax)
+				echo $CURMIN > /sys/devices/platform/gpusysfs/gpu_min_lock;
+				echo $2 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq;
+				echo $CURGOV > /sys/devices/platform/gpusysfs/gpu_available_governor;;
+		esac;
+    fi
+
+    case $1 in
+			gpugov)
+				echo `cat /sys/devices/platform/gpusysfs/gpu_available_governor`;;
+			gpumin)
+				echo `cat /sys/devices/platform/gpusysfs/gpu_min_lock`;;
+			gpumax)
+				echo `cat /sys/devices/platform/gpusysfs/gpu_max_lock`;;
+		esac;
+fi
