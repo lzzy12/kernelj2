@@ -1,6 +1,33 @@
 {
 sections:[
-	
+	{
+	name:INFO,
+		elements:[
+			{ SPane:{
+				title:{
+					en:"General",
+					es:"General"
+				},
+			}},	
+				{ SDescription:{
+					description:"Welcome to the minhka Kernel."
+				}},
+				{ SDescription:{
+					description:"developers by minhka98"
+				}},
+				{
+               STitleBar:{
+                  title:"group",
+               }
+				},
+				{ SDescription:{
+					description:"group facebook Link: <a href='https://www.facebook.com/groups/407213849664554/?multi_permalinks=450672198652052&notif_t=like&notif_id=1502303077605235'>HERE</a>"
+				}},
+				{ SDescription:{
+					description:"group telegram Link: <a href='https://web.telegram.org/#/im?p=s1129584124_5913343681830402873'>HERE</a>"
+				}},
+		]
+}
       {
          name:CPU,
          elements:[
@@ -16,8 +43,8 @@ sections:[
                   step:100000,
                   weight:0.001,
                   min:299000,
-                  max:1495000,
-                  default:1495000,
+                  max:1599000,
+                  default:1599000,
                   action:"cpuset max"
                }
             },
@@ -28,7 +55,7 @@ sections:[
                   step:100000,
                   weight:0.001,
                   min:299000,
-                  max:1495000,
+                  max:1599000,
                   default:299000,
                   action:"cpuset min"
 			}
@@ -112,6 +139,8 @@ sections:[
 			},
          ]
       },
+		
+			
 	  {
          name:I/O,
          elements:[
@@ -216,11 +245,22 @@ sections:[
 					action:"cpuvolt -42"
 				}
 			},
+			{
+				SSeekBar:{
+					title:"1.6 GHZ",
+					max:1400000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"cpuvolt 1599000"
+				}
+			},
            {
 				SSeekBar:{
 					title:"1.5 GHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -231,7 +271,7 @@ sections:[
 				SSeekBar:{
 					title:"1.4 GHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -242,7 +282,7 @@ sections:[
 				SSeekBar:{
 					title:"1.3 GHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -253,7 +293,7 @@ sections:[
 				SSeekBar:{
 					title:"1.2 GHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -264,7 +304,7 @@ sections:[
 				SSeekBar:{
 					title:"1.1 GHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -275,7 +315,7 @@ sections:[
 				SSeekBar:{
 					title:"1 GHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -286,7 +326,7 @@ sections:[
 				SSeekBar:{
 					title:"900 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -297,7 +337,7 @@ sections:[
 				SSeekBar:{
 					title:"800 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -308,7 +348,7 @@ sections:[
 				SSeekBar:{
 					title:"700 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -319,7 +359,7 @@ sections:[
 				SSeekBar:{
 					title:"600 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -330,7 +370,7 @@ sections:[
 				SSeekBar:{
 					title:"500 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -341,7 +381,7 @@ sections:[
 				SSeekBar:{
 					title:"400 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
@@ -352,13 +392,123 @@ sections:[
 				SSeekBar:{
 					title:"300 MHZ",
 					max:1400000,
-					min:600000,
+					min:500000,
 					unit:"uV",
 					step:6250,
 					default:0,
 					action:"cpuvolt 299000"
 				}
 			},
+			{
+               SPane:{
+                  title:"INT Bus"
+               }
+            },
+			{
+				SSeekBar:{
+					title:"400 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"intvolt 400000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"333 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"intvolt 333000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"275 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"intvolt 275000"
+				}
+			},
+			{
+               SPane:{
+                  title:"MIF Bus"
+               }
+            },
+            {
+				SSeekBar:{
+					title:"666 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"mifvolt 666000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"559 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"mifvolt 559000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"413 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"mifvolt 413000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"338 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"mifvolt 338000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"273 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"mifvolt 273000"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"200 MHZ",
+					max:1200000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"mifvolt 200000"
+				}
+			},
+			
          ]
       },
 	]

@@ -1,21 +1,21 @@
 #!/system/bin/sh
 CURRGOV=`cat /sys/devices/platform/gpusysfs/gpu_governor`;
-CURRMAX=`cat /sys/devices/platform/gpusysfs/gpu_min_lock`;
-CURRMIN=`cat /sys/devices/platform/gpusysfs/gpu_max_lock`;
+CURRMIN=`cat /sys/devices/platform/gpusysfs/gpu_min_clock`;
+CURRMAX=`cat /sys/devices/platform/gpusysfs/gpu_max_clock`;
 if [[ ! -z $1 ]];then
     if [[ ! -z $2 ]]; then
         case $1 in
 			gov)
-				echo $CURRMIN > /sys/devices/platform/gpusysfs/gpu_min_lock;
-				echo $CURRMAX > /sys/devices/platform/gpusysfs/gpu_max_lock;
+				echo $CURRMIN > /sys/devices/platform/gpusysfs/gpu_min_clock;
+				echo $CURRMAX > /sys/devices/platform/gpusysfs/gpu_max_clock;
 				echo $2 > /sys/devices/platform/gpusysfs/gpu_governor;;
 			min)
-				echo $2 > /sys/devices/platform/gpusysfs/gpu_min_lock;
-				echo $CURRMAX > /sys/devices/platform/gpusysfs/gpu_max_lock;
+				echo $2 > /sys/devices/platform/gpusysfs/gpu_min_clock;
+				echo $CURRMAX > /sys/devices/platform/gpusysfs/gpu_max_clock;
 				echo $CURRGOV > /sys/devices/platform/gpusysfs/gpu_governor;;
 			max)
-				echo $CURRMIN > /sys/devices/platform/gpusysfs/gpu_min_lock;
-				echo $2 > /sys/devices/platform/gpusysfs/gpu_max_lock;
+				echo $CURRMIN > /sys/devices/platform/gpusysfs/gpu_min_clock;
+				echo $2 > /sys/devices/platform/gpusysfs/gpu_max_clock;
 				echo $CURRGOV > /sys/devices/platform/gpusysfs/gpu_governor;;
 		esac;
     fi
@@ -24,8 +24,40 @@ if [[ ! -z $1 ]];then
 			gov)
 				echo `cat /sys/devices/platform/gpusysfs/gpu_governor`;;
 			min)
-				echo `cat /sys/devices/platform/gpusysfs/gpu_min_lock`;;
+				echo `cat /sys/devices/platform/gpusysfs/gpu_min_clock`;;
 			max)
-				echo `cat /sys/devices/platform/gpusysfs/gpu_max_lock`;;
+				echo `cat /sys/devices/platform/gpusysfs/gpu_max_clock`;;
 		esac;
 fi
+
+
+not use for config.json
+{
+				name: GPU,
+				elements:[
+			{
+				SPane:{
+				title:"NOTICE!",
+				description:".",
+				}
+            },
+			{
+               SPane:{
+                  title:"GPU",
+            }
+		    },
+			{
+               SSeekBar:{
+                  title:"GPU min frequency",
+                  unit:"MHz",
+                  step:100000,
+                  weight:0.001,
+                  min:266000,
+                  max:800000,
+                  default:266000,
+                  action:"gpuset min"
+               }
+            },
+			
+			]
+		},

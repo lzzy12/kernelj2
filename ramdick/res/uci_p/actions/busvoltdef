@@ -1,4 +1,4 @@
 #!/system/bin/sh
-VOLT_TABLE="$1"
+VOLT_TABLE="/sys/devices/bus_mif.7/devfreq/bus_mif.7/volt_table"
 echo "-43 0" > $VOLT_TABLE
 echo "Please restart Synapse to save changed settings"
