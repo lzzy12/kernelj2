@@ -59,7 +59,7 @@ codename)
   echo `sed -n '2p' /sbin/hrt`
   ;;    
 version)
-  echo `busybox uname -r`
+  echo `/res/busybox uname -r`
   ;;
 android_version)
   echo `getprop ro.build.version.release`

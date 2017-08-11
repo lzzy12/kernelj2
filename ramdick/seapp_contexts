@@ -11,9 +11,6 @@ user=_app domain=untrusted_app type=app_data_file
 user=system seinfo=default domain=untrusted_app type=app_data_file
 user=drm seinfo=platform name=com.sec.android.SamsungDrmProvider domain=platform_app type=platform_app_data_file
 user=smartcard seinfo=platform domain=platform_app type=platform_app_data_file
-user=_app seinfo=media domain=special_knox_untrusted_app type=app_data_file
-user=_app seinfo=shared domain=special_knox_untrusted_app type=app_data_file
-user=_app seinfo=release name=com.samsung.android.app.memo domain=special_knox_untrusted_app type=app_data_file
 user=_app seinfo=platform name=com.sec.android.nearby.mediaserver domain=platform_app type=platform_media_app_data_file
 user=sprintextension seinfo=spr_ext name=com.sec.sprextension domain=system_app type=system_app_data_file
 user=_app seinfo=spr_ext name=com.sec.sprextension domain=system_app type=system_app_data_file
@@ -39,23 +36,9 @@ user=_app seinfo=untrusted name=com.google.android.gms domain=filtered_google_ap
 user=_app seinfo=untrusted name=com.google.android.gms.unstable domain=filtered_google_app type=app_data_file
 user=_app seinfo=untrusted name=com.google.android.gms:snet domain=filtered_google_app type=app_data_file
 user=_app seinfo=untrusted name=com.google.process.location domain=filtered_google_app type=app_data_file
-user=system seinfo=platform name=com.sec.knox.containeragent domain=knox_system_app type=system_app_data_file
 user=system seinfo=platform name=com.policydm domain=policyloader_app type=policyloader_app_data_file
 user=_isolated seinfo=container domain=container_app type=container_app_data_file
 user=_app seinfo=container domain=container_app type=container_app_data_file
-user=_app seinfo=platform name=com.sec.knox.store domain=store_app type=store_app_data_file
-user=_app seinfo=caccard name=com.baimobile.android.pcsclite.service domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=keyboard domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=knox_untrusted name=com.centrify.mdm.samsung domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=knox_untrusted name=com.samsung.knoxemm.mdm domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.android.vending domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.android.googlequicksearchbox domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.android.googlequicksearchbox:search domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.process.gapps domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.android.inputmethod.latin domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.android.inputmethod.korean domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.android.inputmethod.pinyin domain=knox_untrusted_app type=app_data_file
-user=_app seinfo=untrusted name=com.google.android.marvin.talkback domain=knox_untrusted_app type=app_data_file
 user=_app seinfo=fixmo domain=fixmo_app type=fixmo_app_data_file
 user=_app seinfo=trustonicpartner domain=trustonicpartner_app type=app_data_file
 user=_app seinfo=good_trustonicpartner domain=trustonicpartner_app type=app_data_file
@@ -77,8 +60,6 @@ user=system seinfo=platform name=com.android.data.backup domain=blocked_app type
 user=system seinfo=platform name=com.android.sec.backup.svc domain=blocked_app type=system_app_data_file
 user=_app seinfo=platform name=com.android.data.backup domain=blocked_app type=platform_app_data_file
 user=_app seinfo=platform name=com.android.sec.backup.svc domain=blocked_app type=platform_app_data_file
-user=system seinfo=platform name=com.sec.knox.updater domain=blocked_app type=system_app_data_file
-user=_app seinfo=platform name=com.sec.knox.updater domain=blocked_app type=platform_app_data_file
 user=system seinfo=platform name=com.google.android.apps.store domain=blocked_app type=system_app_data_file
 user=_app seinfo=platform name=com.google.android.apps.store domain=blocked_app type=platform_app_data_file
 user=system seinfo=platform name=com.sec.android.device.ltetest domain=blocked_app type=system_app_data_file

@@ -298,7 +298,6 @@ spengestureservice                          u:object_r:system_server_service:s0
 storage                                     u:object_r:system_server_service:s0
 SecExternalDisplayService                   u:object_r:system_server_service:s0
 tactileassist                               u:object_r:system_server_service:s0
-tima                                        u:object_r:system_server_service:s0
 transcloud                                  u:object_r:system_server_service:s0
 tw_toolbox                                  u:object_r:system_server_service:s0
 TUI                                         u:object_r:tlc_server_service:s0
@@ -316,7 +315,6 @@ writingbuddymanagerservicerestricted[0-9]   u:object_r:writingbuddymanager_servi
 writingbuddymanagerservicerestricted10      u:object_r:writingbuddymanager_service:s0
 
 
-############ knox_common #############
 apn_settings_policy                         u:object_r:system_server_service:s0
 apppermission_control_policy                u:object_r:system_server_service:s0
 auditlog                                    u:object_r:system_server_service:s0
@@ -357,12 +355,6 @@ generic_vpn_policy                          u:object_r:system_server_service:s0
 geofencing                                  u:object_r:system_server_service:s0
 irm_service                                 u:object_r:system_server_service:s0
 kioskmode                                   u:object_r:system_server_service:s0
-knoxcustom                                  u:object_r:system_server_service:s0
-knox_ccm_policy                             u:object_r:system_server_service:s0
-knox_pinpad_service                         u:object_r:system_server_service:s0
-knox_scep_policy                            u:object_r:system_server_service:s0
-knox_timakeystore_policy                    u:object_r:system_server_service:s0
-knox_vpn_policy                             u:object_r:system_server_service:s0
 ldap_account_policy                         u:object_r:system_server_service:s0
 license_log_service                         u:object_r:system_server_service:s0
 location_policy                             u:object_r:system_server_service:s0

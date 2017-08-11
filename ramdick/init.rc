@@ -10,7 +10,6 @@ import /init.${ro.hardware}.rc
 import /init.${ro.zygote}.rc
 import /init.trace.rc
 import /init.sec_debug.rc
-import /init.container.rc
 import /init.rilcommon.rc
 
 on early-init
@@ -1020,23 +1019,6 @@ service edmaudit /system/bin/edmaudit
     user root
     
 ## WTL_EDM_END
-
-service kap_enable /sbin/knox_changer -e
-    class main
-    seclabel u:r:kapd:s0
-    disabled
-    oneshot
-
-service kap_disable /sbin/knox_changer -d
-    class main
-    seclabel u:r:kapd:s0
-    disabled
-    oneshot
-
-on property:security.knox_kap_mode=true
-    start kap_enable
-on property:security.knox_kap_mode=false
-    start kap_disable
 
 on property:ro.debuggable=1
     start console
