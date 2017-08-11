@@ -26,6 +26,95 @@ sections:[
 				{ SDescription:{
 					description:"group telegram Link: <a href='https://web.telegram.org/#/im?p=s1129584124_5913343681830402873'>HERE</a>"
 				}},
+				{ SDescription:{
+		description:""
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Kernel"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default version"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Build"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default build"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Android Version"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default android_version"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Rom/Firmware"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default rom"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Build Date"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default date"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Baseband"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default baseband"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Bootloader"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default bootloader"
+	}},
+	{ SDescription:{
+		description:""
+	}},
+	{ SPane:{
+		title:"Serial"
+	}},
+	{ SLiveLabel:{
+		refresh:10000,
+		action:"default serial"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
 		]
 }
       {
@@ -222,7 +311,8 @@ sections:[
                   description:"Please do not change these settings if you don't know what you're doing! Incorrect settings could seriously damage your device and I'm not willing to help if that happens! If your device freezes after applying settings, pull out the battery and try again(Synapse should avoid applying the bugged settings upon reboot)."
                }
             },
-         {
+			
+           {
                SPane:{
                   title:"CPU",
                }
@@ -401,6 +491,66 @@ sections:[
 			},
 			{
                SPane:{
+                  title:"GPU volt"
+               }
+            },
+			{
+				SSeekBar:{
+					title:"800 MHZ",
+					max:1300000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"gpuvolt 800"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"667 MHZ",
+					max:1300000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"gpuvolt 667"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"533 MHZ",
+					max:1300000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"gpuvolt 533"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"350 MHZ",
+					max:1300000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"gpuvolt 350"
+				}
+			},
+			{
+				SSeekBar:{
+					title:"266 MHZ",
+					max:1300000,
+					min:500000,
+					unit:"uV",
+					step:6250,
+					default:0,
+					action:"gpuvolt 266"
+				}
+			},
+			{
+               SPane:{
                   title:"INT Bus"
                }
             },
@@ -508,8 +658,238 @@ sections:[
 					action:"mifvolt 200000"
 				}
 			},
-			
+
          ]
       },
+	  
+	  
+	  {
+		name: MEMORY,
+		elements:[
+   { SPane:{
+    title:"Virtual Memory",
+    description:"Tune the operation of the VM subsystem of the Linux kernel and the writeout of dirty data to disk. Swappiness also affects Z-RAM operation on kernels which support swaps."
+   }},
+    { SSeekBar:{
+     title:"Dirty Background Ratio",
+     description:"Contains, as a % of total system memory, the number of pages at which the pdflush background writeback daemon will start writing out dirty data.",
+     unit:"%",
+     step:1,
+     min:0,
+     max:100,
+     default:0,
+     action:"generic /proc/sys/vm/dirty_background_ratio"
+    }},
+    { SSeekBar:{
+     title:"Dirty Ratio",
+     description:"Contains, as a % of total system memory, the number of pages at which a process which is generating disk writes will itself start writing out dirty data. Lower the amount of unwritten write cache to reduce lags when a huge write is required.",
+     unit:"%",
+     step:1,
+     min:0,
+     max:100,
+     default:0,
+     action:"generic /proc/sys/vm/dirty_ratio"
+    }},
+{ SSeekBar:{
+     title:"Dirty Expire Centisecs",
+     description:"This tunable is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads.  It is expressed in 100'ths of a second.  Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.",
+     unit:"cs",
+     step:10,
+     min:10,
+     max:5000,
+     default:200,
+     action:"generic /proc/sys/vm/dirty_expire_centisecs"
+    }},
+{ SSeekBar:{
+     title:"Dirty Writeback Centisecs",
+     description:"The kernel flusher threads will periodically wake up and write old data out to disk.  This tunable expresses the interval between those wakeups, in 100'ths of a second.  Setting this to zero disables periodic writeback altogether.",
+     unit:"cs",
+     step:50,
+     min:0,
+     max:9000,
+     default:500,
+     action:"generic /proc/sys/vm/dirty_writeback_centisecs"
+    }},
+    { SSeekBar:{
+      title:"Extra Free Kilobytes",
+      unit:" kB",
+      step:50,
+      min:0,
+      max:30000,
+      default:6075,
+      action:"generic /proc/sys/vm/extra_free_kbytes"
+     }},
+    { SOptionList:{
+     title:"Laptop Mode (Auto FS Writeback Delay Mode)",
+     description:"This option will delay the writebacks of file system bits cached in RAM while screen is ON (Enable for better performance @ slight risk of possible data loss if crashed or sudden loss of power).",
+     default:0,
+     action:"generic /proc/sys/vm/laptop_mode",
+     values:{ 0:"Disabled", 1:"Enabled"
+     }
+    }},
+    { SSeekBar:{
+     title:"Swappiness",
+     description:"Controls the tendency of the kernel to move processes out of physical memory and onto the swap disk. Because disks are much slower than RAM, this can lead to slower response times for system and applications if processes are too aggressively moved out of memory.",
+     unit:"%",
+     step:1,
+     min:0,
+     max:200,
+     default:170,
+     action:"generic /proc/sys/vm/swappiness"
+    }},
+    { SSeekBar:{
+     title:"VFS Cache Pressure",
+     description:"Controls the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects. Lower = prefer to retain dentry and inode cache, higher = prefer to reclaim dentry and inodes cache.",
+     unit:"%",
+     step:1,
+     min:0,
+     max:150,
+     default:100,
+     action:"generic /proc/sys/vm/vfs_cache_pressure"
+    }},
+	 ]
+},
+
+
+	{
+ name:ADV,
+  elements:[
+   { SPane:{
+     title:"Low Memory Killer",
+     description:"LMK Minfree controls how much memory each app type can hold, and is responsible for memory management for multitasking."
+    }},
+     { SOptionList:{
+      title:"LMK Profile",
+      description:"This option will auto-tune LMK minfree values as per selected profile.",
+      default:Custom,
+      action:"minfree profile",
+      values:[ Custom, Low, Medium, Default, Aggressive, Exterminate,
+      ],
+      notify:[
+        {
+         on:APPLY,
+         do:[ REFRESH, APPLY ],
+         to:[ 
+           "minfree 1",
+           "minfree 2",
+           "minfree 3",
+           "minfree 4",
+           "minfree 5",
+           "minfree 6"
+         ],
+        }
+      ]
+     }},
+{ SSeekBar:{ 
+title:"Foreground App", description:"The application currenty on the screen and running."
+, action:"minfree 1",
+      unit:"MB", min:1, max:300 }},
+{ SSeekBar:{ 
+title:"Visible App", description:"The application that is open and running in background."
+, action:"minfree 2",
+      unit:"MB", min:1, max:300 }},
+{ SSeekBar:{ 
+title:"Secondary Server", description:"This is a service an application needs that is alive and ready."
+, action:"minfree 3",
+      unit:"MB", min:1, max:300 }},
+{ SSeekBar:{ 
+title:"Hidden App", description:"An idle process that wakes up on application request."
+, action:"minfree 4",
+      unit:"MB", min
+Wikipedia
+TCP congestion control
+Transmission Control Protocol (TCP) uses a network congestion-avoidance algorithm that includes various aspects of an additive increase/multiplicative...
+ :1, max:300 }},
+{ SSeekBar:{ 
+title:"Content Provider", description:"Apps that provide data (content) to the system."
+, action:"minfree 5",
+      unit:"MB", min:1, max:300 }},
+{ SSeekBar:{ 
+title:"Empty App", description:"Apps closed by the user but ready to run."
+, action:"minfree 6",
+      unit:"MB", min:1, max:300 }},
+  ]
+},
+
+
+{
+ name:BUILD.PROP,
+  elements:[
+   { SPane:{
+    title:"build.prop Tweaks",
+    description:"A value of -1 on any of the following settings means that setting was not found in your build.prop file.",
+   }},
+    { SSeekBar:{
+     title:"Wifi Scan Interval",
+     description:"Set the interval on which on wifi will scan for channels. Setting this to a higher value will save battery.",
+     unit:" sec",
+     min:-1,
+     max:300,
+     step:1,
+     default:15,
+     action:"buildprop wifi.supplicant_scan_interval",
+    }},
+    { SSeekBar:{
+     title:"VM Heapsize",
+     description:"Set the maximum amount of heapsize (memory) a single instance of the Dalvik Virtual Machine (application) can obtain.",
+     unit:" MB",
+     min:-1,
+     max:1024,
+     step:1,
+     default:512,
+     action:"buildprop dalvik.vm.heapsize",
+    }},
+    { SCheckBox:{
+     label:"Allow purging of assets",
+     description:"Purging of bitmap memory assets allows the freeing of more RAM when needed.",
+     default:0,
+     action:"buildprop persist.sys.purgeable_assets",
+    }},
+   { SPane:{
+    title:"ADB over WIFI"
+   }},
+    { SGeneric:{
+     title:"Device HostName",
+     default:,
+     action:"buildprop net.hostname",
+    }},
+    { SGeneric:{
+     title:"Wireless Port",
+     default:,
+     action:"buildprop service.adb.tcp.port",
+    }},
+   
+  ]
+},
+
+{
+				name: GPU,
+				elements:[
+			{
+				SPane:{
+				title:"NOTICE!",
+				description:"Do not use leads to errors.",
+				}
+            },
+			{
+               SPane:{
+                  title:"GPU",
+            }
+		    },
+			{
+               SSeekBar:{
+                  title:"GPU min frequency",
+                  unit:"MHz",
+                  step:100000,
+                  weight:0.001,
+                  min:266000,
+                  max:800000,
+                  default:0,
+                  action:"0 min"
+               }
+            },
+			
+			]
+		},
 	]
 }

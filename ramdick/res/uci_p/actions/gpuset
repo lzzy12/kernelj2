@@ -30,34 +30,3 @@ if [[ ! -z $1 ]];then
 		esac;
 fi
 
-
-not use for config.json
-{
-				name: GPU,
-				elements:[
-			{
-				SPane:{
-				title:"NOTICE!",
-				description:".",
-				}
-            },
-			{
-               SPane:{
-                  title:"GPU",
-            }
-		    },
-			{
-               SSeekBar:{
-                  title:"GPU min frequency",
-                  unit:"MHz",
-                  step:100000,
-                  weight:0.001,
-                  min:266000,
-                  max:800000,
-                  default:266000,
-                  action:"gpuset min"
-               }
-            },
-			
-			]
-		},

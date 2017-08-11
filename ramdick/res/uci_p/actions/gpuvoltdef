@@ -1,4 +1,0 @@
-#!/system/bin/sh
-VOLT_TABLE="/sys/devices/platform/mali_dev.0/volt_table"
-echo "-43 0" > $VOLT_TABLE
-echo "Please restart Synapse to save changed settings"

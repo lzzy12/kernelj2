@@ -1,0 +1,93 @@
+case $1 in
+gamma)
+  P=/sys/class/mdnie/mdnie/gamma_curve
+  if [ ! -z $2 ]
+  then
+  if [ $2 == Movie ]
+  then
+  echo 0 > $P
+  elif [ $2 == Dynamic ]
+  then
+  echo 1 > $P
+  fi
+  fi
+  curve=`cat $P`
+  if [ $curve == 0 ]
+  then
+  echo Movie
+  elif [ $curve == 1 ]
+  then
+  echo Dynamic
+  fi
+  ;;
+mode)
+  P=/sys/class/mdnie/mdnie/copy_mode
+  if [ ! -z $2 ]
+  then
+  if [ $2 == Standard ]
+  then
+  echo 0 > $P
+  elif [ $2 == Natural ]
+  then
+  echo 1 > $P
+  elif [ $2 == Movie ]
+  then
+  echo 2 > $P
+  fi
+  fi
+  copy=`cat $P`
+  if [ $copy == 0 ]
+  then
+  echo Standard
+  elif [ $copy == 1 ]
+  then
+  echo Natural
+  elif [ $copy == 2 ]
+  then
+  echo Movie
+  fi
+  ;;
+screendata)
+  P=/sys/class/mdnie/mdnie
+  echo "#!/system/bin/sh\necho 1 > $P/override\necho $(cat $P/copy_mode) > $P/copy_mode\necho $(cat $P/black) > $P/black\necho $(cat $P/white) > $P/white\necho $(cat $P/red) > $P/red\necho $(cat $P/green) > $P/green\necho $(cat $P/blue) > $P/blue\necho $(cat $P/cyan) > $P/cyan\necho $(cat $P/magenta) > $P/magenta\necho $(cat $P/yellow) > $P/yellow\necho $(cat $P/gamma_curve) > $P/gamma_curve\necho $(cat $P/sharpen) > $P/sharpen\n" > /sdcard/screen
+  echo File saved at /sdcard/screen
+  ;;
+dev)
+  echo `sed -n '1p' /sbin/hrt`
+  ;;
+codename)
+  echo `sed -n '2p' /sbin/hrt`
+  ;;    
+version)
+  echo `busybox uname -r`
+  ;;
+android_version)
+  echo `getprop ro.build.version.release`
+  ;;
+build)
+  echo `getprop ro.build.PDA`
+  ;; 
+baseband)
+  echo `getprop gsm.version.baseband`
+  ;;
+bootloader)
+  echo `getprop ro.bootloader`
+  ;;
+date)
+  echo `getprop ro.build.date`
+  ;;
+rom)
+  echo `getprop ro.build.display.id`
+  ;;
+serial)
+  P=/efs/FactoryApp/serial_no
+  if [ -f $P ]; then
+    echo `cat $P`
+  else
+    echo `getprop ro.boot.serialno`
+  fi
+  ;;
+susp)
+  echo `cat /sys/kernel/power_suspend/power_suspend_version`
+  ;;
+esac

@@ -1,5 +1,5 @@
 #!/system/bin/sh
-VOLT_TABLE="/sys/devices/platform/mali_dev.0/volt_table"
+VOLT_TABLE="/sys/devices/11400000.mali/volt_table"
 VOLT_TABLE_RAW=`cat $VOLT_TABLE`;
 arrvolt=(`echo ${VOLT_TABLE_RAW}`);
 count=0;

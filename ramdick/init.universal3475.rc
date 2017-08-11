@@ -146,7 +146,7 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
 # SSWAP
-    write /proc/sys/vm/swappiness 170
+    write /proc/sys/vm/swappiness 200
 
     # Support silent logging
     mkdir /data/log 0770 system log
