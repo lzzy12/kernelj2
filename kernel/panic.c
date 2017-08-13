@@ -162,6 +162,8 @@ void panic(const char *fmt, ...)
 
 	exynos_ss_post_panic();
 
+	console_flush_on_panic();
+
 	if (!panic_blink)
 		panic_blink = no_blink;
 
