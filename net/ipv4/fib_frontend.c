@@ -958,7 +958,8 @@ static void nl_fib_input(struct sk_buff *skb)
 
 	net = sock_net(skb->sk);
 	nlh = nlmsg_hdr(skb);
-	if (skb->len < NLMSG_HDRLEN || skb->len < nlh->nlmsg_len ||
+	if (skb->len < nlmsg_total_size(sizeof(*frn)) ||
+	    skb->len < nlh->nlmsg_len ||
 	    nlmsg_len(nlh) < sizeof(*frn))
 		return;
 
@@ -1050,6 +1051,8 @@ static int fib_netdev_event(struct notifier_block *this, unsigned long event, vo
 	}
 
 	in_dev = __in_dev_get_rtnl(dev);
+	if (!in_dev)
+		return NOTIFY_DONE;
 
 	switch (event) {
 	case NETDEV_UP:

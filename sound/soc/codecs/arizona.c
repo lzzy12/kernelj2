@@ -1750,7 +1750,7 @@ static int arizona_hw_params(struct snd_pcm_substream *substream,
 	int tdm_slots = arizona->tdm_slots[dai->id - 1];
 	int bclk, lrclk, wl, frame, bclk_target;
 
-	if (params_rate(params) % 8000)
+	if (params_rate(params) % 4000)
 		rates = &arizona_44k1_bclk_rates[0];
 	else
 		rates = &arizona_48k_bclk_rates[0];
@@ -2349,6 +2349,8 @@ static int arizona_enable_fll(struct arizona_fll *fll)
 	/* Clear any pending completions */
 	try_wait_for_completion(&fll->ok);
 
+	regmap_update_bits(arizona->regmap, fll->base + 1,
+			   ARIZONA_FLL1_FREERUN, 0);
 	regmap_update_bits(arizona->regmap, fll->base + 1,
 			   ARIZONA_FLL1_ENA, ARIZONA_FLL1_ENA);
 	if (use_sync)
